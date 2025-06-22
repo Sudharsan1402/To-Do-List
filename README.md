@@ -246,27 +246,4 @@ app.post("/delete", async (req, res) => {
 ---
 
 
-## Screenshots 🖼️
-![todo2](https://github.com/shanibider/CRUD-PostgreSQL-Todo-List/assets/72359805/df422a92-7def-4969-bd69-62f5be3c5060)
 
-### pgAdmin Tool (for local development):
-![pgAdmin-todo](https://github.com/shanibider/CRUD-PostgreSQL-Todo-List/assets/72359805/070794ce-8d83-4629-8bf3-5d24217c7a40)
-
-
-### Render (for deploying the project + hosted PostgreSQL DB) + TablePlus (DB for production):
-![Production db (tableplus) + deployment in render](https://github.com/shanibider/CRUD-PostgreSQL-Todo-List/assets/72359805/8e8f1be6-a8bc-4c59-8648-4b8d2c8381c7)
-
-### Tableplus - local and production Workspace
-![tableplus - local and production](https://github.com/shanibider/CRUD-PostgreSQL-Todo-List/assets/72359805/599a9b7a-f66e-4d8c-9fa9-837b41de4af5)
-
-
-## 📫 Connect with me 😊
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/shani-bider/)
-[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://shanibider.onrender.com/)
-[![gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:shanibider@gmail.com)
-
-<footer>
-<p style="float:left; width: 20%;">
-Copyright © Shani Bider, 2024
-</p>
-</footer>
