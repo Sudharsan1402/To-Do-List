@@ -8,6 +8,10 @@
 This project is a simple ToDoList application built with `Express.js, Node.js, PostgreSQL, and EJS`. <img height=30px src="https://skillicons.dev/icons?i=postgresql"> <img height=30px src="https://skillicons.dev/icons?i=express"> <img height=30px src="https://skillicons.dev/icons?i=nodejs"> <br>
 It allows users to manage their tasks by adding, editing, and deleting items from their to-do list.
 
+## 🌐 Live Demo
+
+👉 [https://book-notes-main.onrender.com](https://book-notes-main.onrender.com)
+
 ## 🚀 Getting Started
 
 ### Prerequisites
