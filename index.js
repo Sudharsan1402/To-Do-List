@@ -4,6 +4,7 @@ import pg from "pg";
 import dotenv from 'dotenv';
 
 const app = express();
+app.set("view engine", "ejs");
 const port = process.env.PORT || 3000; 
 dotenv.config();
 
@@ -19,7 +20,7 @@ db.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-let item = [
+let items = [
   { id: 1, title: "Buy milk" },
   { id: 2, title: "Finish homework" },
 ];
@@ -27,18 +28,19 @@ let item = [
 const currentDate = () => {
   const date = new Date();
   const day = date.getDate().toString().padStart(2, "0");
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Month is zero-based, so we add 1
   return `${day}.${month}`;
 };
+
 
 app.get("/", async (req, res) => {
   try {
     const result = await db.query("SELECT * FROM items ORDER BY id ASC");
-    item = result.rows;
+    items = result.rows;
 
     res.render("index.ejs", {
       listTitle: currentDate() + " To-Do List",
-      listItems: item,
+      listItems: items,
     });
   } catch (err) {
     console.log(err);
@@ -46,9 +48,10 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/add", async (req, res) => {
-  const newItem = req.body.newItem;
+  const item = req.body.newItem;
+  // items.push({title: item});
   try {
-    await db.query("INSERT INTO items (title) VALUES ($1)", [newItem]);
+    await db.query("INSERT INTO items (title) VALUES ($1)", [item]);
     res.redirect("/");
   } catch (err) {
     console.log(err);
@@ -56,11 +59,11 @@ app.post("/add", async (req, res) => {
 });
 
 app.post("/edit", async (req, res) => {
-  const updatedItem = req.body.updatedItemTitle;
+  const item = req.body.updatedItemTitle;
   const id = req.body.updatedItemId;
 
   try {
-    await db.query("UPDATE items SET title = $1 WHERE id = $2", [updatedItem, id]);
+    await db.query("UPDATE items SET title = ($1) WHERE id = $2", [item, id]);
     res.redirect("/");
   } catch (err) {
     console.log(err);
