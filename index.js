@@ -4,17 +4,14 @@ import pg from "pg";
 import dotenv from 'dotenv';
 
 const app = express();
-const port = process.env.PORT || 3000; // Use the PORT provided by the environment or default to 3000
-
+const port = process.env.PORT || 3000; 
 dotenv.config();
-
-
 
 const db = new pg.Client({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
   database: process.env.DB_DATABASE,
-  password: String(process.env.DB_PASSWORD), // Convert to string
+  password: String(process.env.DB_PASSWORD),
   port: process.env.DB_PORT,
 });
 db.connect();
@@ -24,28 +21,26 @@ console.log(String(process.env.DB_PASSWORD));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-let items = [
+let item = [
   { id: 1, title: "Buy milk" },
   { id: 2, title: "Finish homework" },
 ];
 
-
 const currentDate = () => {
   const date = new Date();
   const day = date.getDate().toString().padStart(2, "0");
-  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Month is zero-based, so we add 1
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
   return `${day}.${month}`;
 };
-
 
 app.get("/", async (req, res) => {
   try {
     const result = await db.query("SELECT * FROM items ORDER BY id ASC");
-    items = result.rows;
+    item = result.rows;
 
     res.render("index.ejs", {
       listTitle: currentDate() + " To-Do List",
-      listItems: items,
+      listItems: item,
     });
   } catch (err) {
     console.log(err);
@@ -53,10 +48,9 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/add", async (req, res) => {
-  const item = req.body.newItem;
-  // items.push({title: item});
+  const newItem = req.body.newItem;
   try {
-    await db.query("INSERT INTO items (title) VALUES ($1)", [item]);
+    await db.query("INSERT INTO items (title) VALUES ($1)", [newItem]);
     res.redirect("/");
   } catch (err) {
     console.log(err);
@@ -64,11 +58,11 @@ app.post("/add", async (req, res) => {
 });
 
 app.post("/edit", async (req, res) => {
-  const item = req.body.updatedItemTitle;
+  const updatedItem = req.body.updatedItemTitle;
   const id = req.body.updatedItemId;
 
   try {
-    await db.query("UPDATE items SET title = ($1) WHERE id = $2", [item, id]);
+    await db.query("UPDATE items SET title = $1 WHERE id = $2", [updatedItem, id]);
     res.redirect("/");
   } catch (err) {
     console.log(err);
