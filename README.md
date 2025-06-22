@@ -1,4 +1,5 @@
-# 📝 PostgreSQL To-Do List 
+# 📝 PostgreSQL To-Do List
+
 [![postgresql](https://img.shields.io/badge/postgresql-★★★★★-yellow)](https://vitejs.dev/)
 [![pgadmin](https://img.shields.io/badge/pgadmin-★★★★★-blue)](https://vitejs.dev/)
 [![tableplus](https://img.shields.io/badge/tableplus-★★★★★-pink)](https://vitejs.dev/)
@@ -10,8 +11,6 @@ It allows users to manage their tasks by adding, editing, and deleting items fro
 ## 🚀 Getting Started
 
 ### Prerequisites
-
-
 
 Before you begin, ensure you have the following installed:
 
@@ -55,9 +54,11 @@ Before you begin, ensure you have the following installed:
    ```bash
    npm start
    ```
-Your server is now running on: [http://localhost:3000](http://localhost:3000)
+
+   Your server is now running on: [http://localhost:3000](http://localhost:3000)
 
 ---
+
 ### Production Setup 🛠️
 
 1. **Database Setup on Render:**
@@ -86,6 +87,7 @@ Your server is now running on: [http://localhost:3000](http://localhost:3000)
    - [x] Deploy the service.
 
 ## 🛠️ Technologies Used
+
 [![My Skills](https://skillicons.dev/icons?i=postgresql,express,nodejs,js,html,css)](https://skillicons.dev)
 
 - [ ] **Backend:**
@@ -114,9 +116,11 @@ Your server is now running on: [http://localhost:3000](http://localhost:3000)
 ├── package.json
 ├── README.md
 ```
+
 ---
 
 ## 📋 API Endpoints
+
 These endpoints provide **full CRUD (Create, Read, Update, Delete)** functionality for managing tasks in the To-Do List application.<br>
 These code examples demonstrate how to interact with these endpoints using the `fetch` API.<br>
 
@@ -125,8 +129,8 @@ These code examples demonstrate how to interact with these endpoints using the `
 - [x] **PUT** `/tasks/:id` - Update a task
 - [x] **DELETE** `/tasks/:id` - Delete a task
 
-
 ### GET / 📋
+
 Retrieve all items from the to-do list and render the index page.
 
 - **URL:** `/`
@@ -134,12 +138,12 @@ Retrieve all items from the to-do list and render the index page.
 - **Response:**
   - **200 OK**: Renders the `index.ejs` page with the list of items.
 
-```javascript
+````javascript
 app.get("/", async (req, res) => {
   try {
     // Query the database to get all items, ordered by their ID in ascending order
     const result = await db.query("SELECT * FROM items ORDER BY id ASC");
-    
+
     // Store the result rows in the items array
     items = result.rows;
 
@@ -155,9 +159,10 @@ app.get("/", async (req, res) => {
     console.log(err);
   }
 });
-```
+````
 
 ### POST /add ➕
+
 Add a new item to the to-do list.
 
 - **URL:** `/add`
@@ -171,11 +176,11 @@ Add a new item to the to-do list.
 app.post("/add", async (req, res) => {
   // Get the new item title from the request body
   const item = req.body.newItem;
-  
+
   try {
     // Insert the new item into the database
     await db.query("INSERT INTO items (title) VALUES ($1)", [item]);
-    
+
     // Redirect to the homepage to show the updated list
     res.redirect("/");
   } catch (err) {
@@ -186,6 +191,7 @@ app.post("/add", async (req, res) => {
 ```
 
 ### POST /edit ✏️
+
 Edit an existing item in the to-do list.
 
 - **URL:** `/edit`
@@ -205,7 +211,7 @@ app.post("/edit", async (req, res) => {
   try {
     // Update the item in the database
     await db.query("UPDATE items SET title = ($1) WHERE id = $2", [item, id]);
-    
+
     // Redirect to the homepage to show the updated list
     res.redirect("/");
   } catch (err) {
@@ -216,6 +222,7 @@ app.post("/edit", async (req, res) => {
 ```
 
 ### POST /delete ❌
+
 Delete an item from the to-do list.
 
 - **URL:** `/delete`
@@ -229,11 +236,11 @@ Delete an item from the to-do list.
 app.post("/delete", async (req, res) => {
   // Get the ID of the item to be deleted from the request body
   const id = req.body.deleteItemId;
-  
+
   try {
     // Delete the item from the database
     await db.query("DELETE FROM items WHERE id = $1", [id]);
-    
+
     // Redirect to the homepage to show the updated list
     res.redirect("/");
   } catch (err) {
@@ -244,6 +251,3 @@ app.post("/delete", async (req, res) => {
 ```
 
 ---
-
-
-
