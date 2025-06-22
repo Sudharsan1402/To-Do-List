@@ -1,5 +1,4 @@
-// A permanent todo list (based on postgreSQL storage + pgAdmin) - include all CRUD actions. 
-// create permalist db in pgAdmin, npm i, nodemon index.js, localhost:3000
+
 
 
 import express from "express";
