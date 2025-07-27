@@ -34,8 +34,9 @@ Before you begin, ensure you have the following installed:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/Sudharsan1402/todo-list-project.git
-   cd todo-list-project
+   git clone https://github.com/Sudharsan1402/To-Do-List.git
+   cd To-Do-List
+
    ```
 
 2. **Install dependencies:**
