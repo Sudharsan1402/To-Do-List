@@ -8,6 +8,14 @@
 This project is a simple ToDoList application built with `Express.js, Node.js, PostgreSQL, and EJS`. <img height=30px src="https://skillicons.dev/icons?i=postgresql"> <img height=30px src="https://skillicons.dev/icons?i=express"> <img height=30px src="https://skillicons.dev/icons?i=nodejs"> <br>
 It allows users to manage their tasks by adding, editing, and deleting items from their to-do list.
 
+
+
+## 🌐 Live Demo
+
+👉 [https://to-do-list-1st4.onrender.com/](https://to-do-list-1st4.onrender.com/)
+
+
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -26,8 +34,9 @@ Before you begin, ensure you have the following installed:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/todo-list-project.git
-   cd todo-list-project
+   git clone https://github.com/Sudharsan1402/To-Do-List.git
+   cd To-Do-List
+
    ```
 
 2. **Install dependencies:**
